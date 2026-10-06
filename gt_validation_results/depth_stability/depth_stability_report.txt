@@ -1,0 +1,71 @@
+GT label stability: depth 2 vs depth 3
+============================================================
+Agent call: GameTheoryMultiplayerAgent(search_depth=d).select_move(...), identical to run_all_spots_gt.py
+Spots glob: /home/claude/LudoBench/spots_40/spots_*.json
+
+ALL ENTRIES (520 entries; grudge boards appear twice)
+  total scenarios tested : 520
+  matching labels        : 489  (94.0%)   95% CI [91.7%, 95.8%]
+  changed labels         : 31  (6.0%)
+  changed, ignoring swaps of identical pieces (same square): 31  (6.0%)
+
+UNIQUE BOARDS (480; grudge counted once, matches the paper's 480)
+  total scenarios tested : 480
+  matching labels        : 449  (93.5%)   95% CI [91.0%, 95.4%]
+  changed labels         : 31  (6.5%)
+  changed, ignoring swaps of identical pieces (same square): 31  (6.5%)
+
+Sanity check: depth-2 moves vs stored labels in /home/claude/LudoBench/spot_results_gt: 520/520 identical
+
+BY PLAYER COUNT
+  2-player : 163/182 match (89.6%), changed 19 (10.4%)
+  3-player : 161/169 match (95.3%), changed 8 (4.7%)
+  4-player : 165/169 match (97.6%), changed 4 (2.4%)
+
+BY SCENARIO CATEGORY (match / total)
+  blocked                       34/ 40  ( 85.0%)  changed 6
+  capture                       40/ 40  (100.0%)  changed 0
+  capture_vs_home               40/ 40  (100.0%)  changed 0
+  capture_vs_home_finish        38/ 40  ( 95.0%)  changed 2
+  capture_vs_openexisting       38/ 40  ( 95.0%)  changed 2
+  capture_vs_safe               39/ 40  ( 97.5%)  changed 1
+  extra_turn                    40/ 40  (100.0%)  changed 0
+  grudge                        80/ 80  (100.0%)  changed 0
+  home_entry                    25/ 40  ( 62.5%)  changed 15
+  overshoot                     35/ 40  ( 87.5%)  changed 5
+  safe                          40/ 40  (100.0%)  changed 0
+  safe_vs_openexisting          40/ 40  (100.0%)  changed 0
+
+SCENARIOS WHERE THE LABEL CHANGED (31)
+  file                                 spot_id                      pl dice legal   d2  d3  same-square?
+  spots_blocked.json                   blocked_2p_008                2    4 1/2       1    2  no
+  spots_blocked.json                   blocked_2p_009                2    5 1/2       1    2  no
+  spots_blocked.json                   blocked_2p_011                2    4 1/2       1    2  no
+  spots_blocked.json                   blocked_2p_031                2    2 1/2       1    2  no
+  spots_blocked.json                   blocked_3p_009                3    2 1/2       1    2  no
+  spots_blocked.json                   blocked_4p_032                4    2 1/2       1    2  no
+  spots_capture_vs_home_finish.json    cvhf_2p_022                   2    4 0/1       0    1  no
+  spots_capture_vs_home_finish.json    cvhf_2p_028                   2    2 0/1       0    1  no
+  spots_capture_vs_openexisting.json   cvo_4p_004                    4    6 0/1/2/3   1    0  no
+  spots_capture_vs_openexisting.json   cvo_4p_017                    4    6 0/1/2/3   1    0  no
+  spots_capture_vs_safe.json           cvs_3p_028                    3    6 0/1/2/3   0    2  no
+  spots_home_entry.json                home_entry_2p_001             2    3 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_004             2    4 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_007             2    5 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_010             2    5 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_022             2    3 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_037             2    4 0/1       1    0  no
+  spots_home_entry.json                home_entry_3p_062             3    3 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_067             2    4 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_073             2    3 0/1       1    0  no
+  spots_home_entry.json                home_entry_3p_077             3    2 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_079             2    4 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_088             2    2 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_091             2    4 0/1       1    0  no
+  spots_home_entry.json                home_entry_2p_094             2    5 0/1       1    0  no
+  spots_home_entry.json                home_entry_3p_095             3    5 0/1       1    0  no
+  spots_overshoot.json                 overshoot_3p_014              3    5 1/2       2    1  no
+  spots_overshoot.json                 overshoot_3p_056              3    5 1/2       1    2  no
+  spots_overshoot.json                 overshoot_4p_069              4    2 1/2       1    2  no
+  spots_overshoot.json                 overshoot_2p_073              2    3 1/2       1    2  no
+  spots_overshoot.json                 overshoot_3p_089              3    3 1/2       1    2  no

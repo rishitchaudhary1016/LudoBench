@@ -1,0 +1,16 @@
+Depth sweep on /home/claude/LudoBench/spots_40/spots_home_entry.json (40 spots)
+depth 1: GT picks a home-entry move in 0/40 = 0.00   (0.0s)
+depth 2: GT picks a home-entry move in 5/40 = 0.12   (0.0s)
+depth 3: GT picks a home-entry move in 20/40 = 0.50   (0.1s)
+depth 4: GT picks a home-entry move in 31/40 = 0.78   (0.8s)
+depth 5: GT picks a home-entry move in 38/40 = 0.95   (7.3s)
+
+Label agreement between depths (same chosen token):
+  depth 2 vs depth 2: 40/40
+  depth 2 vs depth 3: 25/40
+  depth 2 vs depth 4: 14/40
+  depth 2 vs depth 5: 7/40
+  depth 1 vs depth 2: 35/40
+  depth 2 vs depth 3: 25/40
+  depth 3 vs depth 4: 29/40
+  depth 4 vs depth 5: 33/40

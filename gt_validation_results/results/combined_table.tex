@@ -1,0 +1,20 @@
+\begin{tabular}{llllrcc}
+\toprule
+Setting & Agent & vs.\ (all others) & Games & Win rate [95\% CI] & Chance & Avg.\ rank\\
+\midrule
+\multicolumn{7}{l}{\emph{Full game vs. baselines}}\\
+2p & GT & Heuristic & 1000 & 0.594 [0.563, 0.624] & 0.50 & 1.41\\
+2p & GT & Random & 1000 & 0.912 [0.893, 0.928] & 0.50 & 1.09\\
+3p & GT & Heuristic & 1000 & 0.373 [0.344, 0.403] & 0.33 & 1.93\\
+3p & GT & Random & 1000 & 0.762 [0.735, 0.787] & 0.33 & 1.28\\
+4p & GT & Heuristic & 999 & 0.265 [0.239, 0.294] & 0.25 & 2.56\\
+4p & GT & Random & 1000 & 0.676 [0.646, 0.704] & 0.25 & 1.47\\
+\multicolumn{7}{l}{\emph{Reference: Heuristic vs. Random}}\\
+2p & Heuristic & Random & 2000 & 0.844 [0.827, 0.859] & 0.50 & 1.16\\
+3p & Heuristic & Random & 1000 & 0.721 [0.692, 0.748] & 0.33 & 1.32\\
+4p & Heuristic & Random & 1000 & 0.649 [0.619, 0.678] & 0.25 & 1.49\\
+\multicolumn{7}{l}{\emph{Search depth (2-player)}}\\
+2p & GT h=2 & GT h=1 & 2000 & 0.630 [0.609, 0.651] & 0.50 & 1.37\\
+2p & GT h=3 & GT h=2 & 1000 & 0.552 [0.521, 0.583] & 0.50 & 1.45\\
+\bottomrule
+\end{tabular}

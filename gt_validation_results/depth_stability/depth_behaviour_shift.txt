@@ -1,0 +1,25 @@
+Share of spots where GT's chosen move is of each kind (depth 1 / 2 / 3). Grudge boards counted once.
+category                     n kind         d1     d2     d3
+blocked                     40 bring_out    0.20   0.20   0.20
+blocked                     40 safe_sq      0.28   0.28   0.28
+capture                     40 capture      0.90   0.88   0.88
+capture                     40 bring_out    0.10   0.10   0.10
+capture                     40 safe_sq      0.10   0.10   0.10
+capture_vs_home             40 capture      1.00   0.97   0.97
+capture_vs_home             40 home_entry   0.00   0.03   0.03
+capture_vs_home_finish      40 capture      0.00   0.00   0.05
+capture_vs_home_finish      40 finish       1.00   1.00   0.95
+capture_vs_openexisting     40 capture      0.65   0.68   0.62
+capture_vs_openexisting     40 bring_out    0.35   0.33   0.38
+capture_vs_openexisting     40 safe_sq      0.35   0.33   0.38
+capture_vs_safe             40 capture      0.97   0.97   0.95
+capture_vs_safe             40 bring_out    0.03   0.03   0.05
+capture_vs_safe             40 safe_sq      0.03   0.03   0.05
+extra_turn                  40 bring_out    1.00   1.00   1.00
+extra_turn                  40 safe_sq      1.00   1.00   1.00
+grudge                      40 capture      0.97   0.97   0.97
+grudge                      40 home_entry   0.03   0.03   0.03
+home_entry                  40 home_entry   0.00   0.12   0.50
+safe                        40 safe_sq      1.00   0.88   0.88
+safe_vs_openexisting        40 bring_out    1.00   1.00   1.00
+safe_vs_openexisting        40 safe_sq      1.00   1.00   1.00
