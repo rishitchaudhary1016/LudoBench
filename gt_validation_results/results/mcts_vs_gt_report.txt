@@ -1,0 +1,46 @@
+MCTS vs GT AGREEMENT REPORT (statistics only)
+============================================================
+Source      : gt_validation_results/mcts/mcts_vs_gt_results.csv
+Agents      : GT = GameTheoryMultiplayerAgent(depth=2); MCTS = MCTSAgent(1000 rollouts, seed=0, c=sqrt(2))
+Agreement   : same token index chosen by GT and MCTS
+Note        : 520 entries = 480 unique boards; the 40 grudge boards appear twice (_a/_b), so the grudge category has 80 entries.
+
+1. OVERALL
+------------------------------------------------------------
+Total scenarios processed : 520
+Agreements                : 316  (60.8%)
+Disagreements             : 204  (39.2%)
+
+2. AGREEMENT BY CATEGORY
+------------------------------------------------------------
+category                        N  Agree  Disagree  Agree %  Disagree %
+-----------------------------------------------------------------------
+blocked                        40     18        22    45.0%       55.0%
+capture                        40     35         5    87.5%       12.5%
+capture_vs_home                40     33         7    82.5%       17.5%
+capture_vs_home_finish         40      5        35    12.5%       87.5%
+capture_vs_openexisting        40     28        12    70.0%       30.0%
+capture_vs_safe                40     37         3    92.5%        7.5%
+extra_turn                     40     12        28    30.0%       70.0%
+grudge                         80     74         6    92.5%        7.5%
+home_entry                     40     20        20    50.0%       50.0%
+overshoot                      40     20        20    50.0%       50.0%
+safe                           40     25        15    62.5%       37.5%
+safe_vs_openexisting           40      9        31    22.5%       77.5%
+
+3. AGREEMENT BY PLAYER COUNT
+------------------------------------------------------------
+players                       N  Agree  Disagree  Agree %  Disagree %
+-----------------------------------------------------------------------
+2-player                      182    121        61    66.5%       33.5%
+3-player                      169    107        62    63.3%       36.7%
+4-player                      169     88        81    52.1%       47.9%
+
+4. KEY FINDINGS (descriptive only)
+------------------------------------------------------------
+- Overall, MCTS and GT chose the same token in 316 of 520 entries (60.8%).
+- Highest-agreement category: grudge (92.5%, 74/80).
+- Lowest-agreement category: capture_vs_home_finish (12.5%, 5/40).
+- Categories at 100% agreement: none.
+- Agreement by player count: 2-player 66.5% (121/182); 3-player 63.3% (107/169); 4-player 52.1% (88/169).
+- Category agreement spans 12.5% to 92.5%.

@@ -1,0 +1,361 @@
+MCTS vs GT DISAGREEMENT ANALYSIS
+==============================================================================
+Source CSV : gt_validation_results/results/mcts_vs_gt_results.csv (520 entries, unchanged)
+GT         : GameTheoryMultiplayerAgent(depth=2)   MCTS: MCTSAgent(1000 rollouts, seed=0, c=sqrt(2))
+Agreement  : same token index. (GT picks the lowest index among equal values; MCTS returns the lowest
+             index of each equivalent-piece class. Disagreements between identical pieces: 0.)
+Not rerun  : GT, MCTS, tournaments, depth study. Nothing in GT / MCTS / spots was modified.
+
+Evidence labels used below
+  [DATA]       counted directly from the CSV + spot boards (move types via the repo's classify_move()).
+  [DERIVED]    arithmetic with GT's evaluator weights (0.0025*progress + 0.20*finished - 0.05*base +
+               0.01*safe, centred on the player mean) computed offline on the boards. GT itself was not rerun;
+               this '1-ply evaluator' reproduces GT's depth-2 label in 490/520 entries (section 7), so it is a good proxy.
+  [HYPOTHESIS] plausible cause that the stored artifacts cannot test. The CSV holds only the chosen token;
+               MCTS visit counts / win rates were not saved (MCTSAgent.last_search_info was not written).
+
+==============================================================================
+1. OVERALL AND CHANCE BASELINE
+==============================================================================
+[DATA] Entries 520: agree 316 (60.8%), disagree 204 (39.2%).
+[DATA] If MCTS picked a legal move uniformly at random, expected agreement with GT would be
+       43.3% by token index, or 49.3% when identical pieces are merged (how MCTS actually
+       enumerates moves). Observed 60.8%. Overall exact binomial p vs the merged baseline: <0.001.
+       Chance differs a lot by category (extra_turn and safe_vs_openexisting have 4 legal tokens but only 2
+       distinct moves, because 3 pieces sit in base). Raw 'Agree %' must be read against the chance column.
+
+category                     N  agree  dis  agree%  chance%  excess        p  reading
+--------------------------------------------------------------------------------------------
+blocked                     40     18   22   45.0%    47.9%   -2.9pp    0.754  AT CHANCE
+capture                     40     35    5   87.5%    45.8%  +41.7pp   <0.001  above chance
+capture_vs_home             40     33    7   82.5%    50.0%  +32.5pp   <0.001  above chance
+capture_vs_home_finish      40      5   35   12.5%    50.0%  -37.5pp   <0.001  BELOW chance (systematic opposite)
+capture_vs_openexisting     40     28   12   70.0%    50.0%  +20.0pp    0.017  above chance
+capture_vs_safe             40     37    3   92.5%    47.1%  +45.4pp   <0.001  above chance
+extra_turn                  40     12   28   30.0%    50.0%  -20.0pp    0.017  BELOW chance (systematic opposite)
+grudge                      80     74    6   92.5%    50.0%  +42.5pp   <0.001  above chance
+home_entry                  40     20   20   50.0%    50.0%   +0.0pp    1.000  AT CHANCE
+overshoot                   40     20   20   50.0%    50.0%   +0.0pp    1.000  AT CHANCE
+safe                        40     25   15   62.5%    50.0%  +12.5pp    0.154  AT CHANCE
+safe_vs_openexisting        40      9   31   22.5%    50.0%  -27.5pp   <0.001  BELOW chance (systematic opposite)
+(p: exact two-sided binomial test of observed agreements against the mean merged-piece chance rate of the
+ category; n=40 per cell, so only large effects are detectable. grudge has 80 entries = 40 boards x 2.)
+
+==============================================================================
+2. WHERE THE 204 DISAGREEMENTS COME FROM
+==============================================================================
+category                    dis   share  cumul.
+capture_vs_home_finish       35   17.2%   17.2%
+safe_vs_openexisting         31   15.2%   32.4%
+extra_turn                   28   13.7%   46.1%
+blocked                      22   10.8%   56.9%
+home_entry                   20    9.8%   66.7%
+overshoot                    20    9.8%   76.5%
+safe                         15    7.4%   83.8%
+capture_vs_openexisting      12    5.9%   89.7%
+capture_vs_home               7    3.4%   93.1%
+grudge                        6    2.9%   96.1%
+capture                       5    2.5%   98.5%
+capture_vs_safe               3    1.5%  100.0%
+
+[DATA] Top 3 (capture_vs_home_finish, safe_vs_openexisting, extra_turn): 94 = 46.1% of all disagreements.
+[DATA] The five requested focus categories: 136 = 66.7%. Adding overshoot: 156 = 76.5%.
+[DATA] Dropping the 3 categories whose agreement is statistically at chance (blocked, home_entry, overshoot): agreement on the remaining 400 entries = 258/400 = 64.5%.
+
+==============================================================================
+3. WHAT EACH AGENT CHOSE WHEN THEY DISAGREED (move types, disagreements only)
+==============================================================================
+Move type priority: capture > finish (lands on home end) > home_path > bring_out > safe_sq > advance.
+(bring_out lands on a start square, which is a safe square; it is labelled bring_out.)
+  capture_vs_home_finish (35/40):  GT finish -> MCTS capture: 35
+  safe_vs_openexisting (31/40):  GT bring_out -> MCTS safe_sq: 31
+  extra_turn (28/40):  GT bring_out -> MCTS advance: 28
+  blocked (22/40):  GT advance -> MCTS advance: 11;  GT bring_out -> MCTS advance: 5;  GT safe_sq -> MCTS advance: 2;  GT bring_out -> MCTS safe_sq: 2;  GT bring_out -> MCTS home_path: 1;  GT advance -> MCTS home_path: 1
+  home_entry (20/40):  GT advance -> MCTS home_path: 20
+  overshoot (20/40):  GT advance -> MCTS advance: 20
+  safe (15/40):  GT safe_sq -> MCTS advance: 12;  GT advance -> MCTS safe_sq: 3
+  capture_vs_openexisting (12/40):  GT bring_out -> MCTS capture: 12
+  capture_vs_home (7/40):  GT capture -> MCTS home_path: 7
+  grudge (6/80):  GT capture -> MCTS capture: 6
+  capture (5/40):  GT bring_out -> MCTS capture: 3;  GT advance -> MCTS capture: 1;  GT bring_out -> MCTS advance: 1
+  capture_vs_safe (3/40):  GT capture -> MCTS safe_sq: 2;  GT bring_out -> MCTS capture: 1
+
+==============================================================================
+4. FOCUS CATEGORIES
+==============================================================================
+
+4.1 capture_vs_home_finish: 35/40 disagreements (87.5%), the largest single source
+----------------------------------------------------------------------------------
+GT preference   : finish the piece. GT finishes in 40/40.
+MCTS preference : capture. MCTS captures in 35/40 and finishes in 5/40.
+[DATA] Agreement 12.5% vs 50.0% chance: the two agents hold opposite preferences.
+[DATA] MCTS capture rate by how far the victim piece had advanced (progress counted as in the evaluator):
+         captured piece progress <=20   n=16  MCTS captures 12
+         21-40                          n=12  MCTS captures 11
+         >40                            n=12  MCTS captures 12
+[DATA] The 5 agreements are all 'both finish'; victim progress there = [3, 7, 7, 10, 33] (4 of 5 are very low-value captures), dice = [2, 3, 3, 3, 5].
+[DERIVED] Both options advance the same number of squares, so progress cancels. Finish earns +0.20; a capture earns
+          +0.05 (victim back to base) + 0.0025*victim_progress, at most 0.18 (victim progress 52).
+          So finish beats capture at the evaluator for EVERY possible board (margin >= 0.02 unscaled).
+          On these boards the centred 1-ply margin (capture minus finish) lies in [-0.132, -0.010], never positive.
+[DATA] GT depth 3 changes 2/40 labels here (2 of them to capture); MCTS matches GT depth 3 on 7/40 (vs 5/40 for depth 2). Disagreements by player count: 2p 13/14, 3p 11/13, 4p 11/13 (not a multi-player artifact).
+[DATA] Spot-design note: the finishing token is the lowest legal index in 40/40 spots,
+       so an index-biased player 'agrees' with GT here without reasoning about the tradeoff.
+Likely causes:
+  1. [DERIVED] GT's finish-over-capture preference is fixed by the evaluator weights (0.20 vs <= 0.18), not discovered by search.
+  2. [DATA] MCTS values the move by win probability under random continuation. It captures more often the more valuable the
+     victim (12/16, 11/12, 12/12 by band), i.e. its choice is value-sensitive rather than random.
+  3. [CONTEXT] In this engine a piece on the home path moves only on the exact roll that reaches home end, so declining a
+     finish has a real cost; MCTS evidently does not find it decisive. This is a genuine modelling disagreement, which
+     means the paper's statement that finishing is correct and capturing merely delays the opponent (Sec. 6.3) is a
+     normative claim that an independent search agent does not support.
+
+4.2 safe_vs_openexisting: 31/40 disagreements (77.5%)
+-----------------------------------------------------
+Board structure : dice = 6 in 40/40; exactly 1 piece on the board and 3 in base in 40/40. Real choice: bring a 2nd piece out vs move the lone piece.
+GT preference   : bring a piece out. GT does so in 40/40.
+MCTS preference : safe-square move preferred (the 'safe' alternative is the lone piece landing on a safe square). MCTS moves the existing piece in 31/40 and brings one out in 9/40.
+[DATA] Agreement 22.5% vs 50.0% chance (p <0.001): BELOW chance, i.e. a systematic opposite preference.
+[DERIVED] 1-ply evaluator: bring-out = +0.05 (leaves base) +0.0025 (1 square) +0.01 (start square is safe) = 0.0625;
+          moving the lone piece 6 squares = 0.015 (+0.01 if it lands safe). The margin is fixed by the weights, independent of the board,
+          which is why GT chooses bring-out in 40/40 at depth 1, 2 and 3 alike.
+[DATA] MCTS moves the lone piece, by how far that piece has already travelled:
+         lone-piece progress 0-17   n=15  MCTS moves it 12
+         lone-piece progress 18-34  n=16  MCTS moves it 14
+         lone-piece progress 35-52  n= 9  MCTS moves it  5
+         late (35-52) vs earlier: 5/9 vs 26/31; Fisher exact p = 0.168
+[DATA] Agreement by player count: 2p 5/14, 3p 3/13, 4p 1/13
+[DATA] GT depth 3 changes 0/40 labels; MCTS matches depth 3 on 9/40. The GT label here is depth-stable.
+[DATA] Spot-design note: GT's choice is the lowest legal index in 40/40 spots (base tokens come first).
+Likely causes:
+  1. [DERIVED] GT's rule 'bring out on a 6' is the -0.05*base term. It is a weight choice, so it is not independent evidence
+     that development is the stronger strategy.
+  2. [HYPOTHESIS] MCTS values are win probabilities under uniform-random continuation with ~500 rollouts per root candidate
+     (SE of a win rate ~0.02 at p=0.5). Tempo effects of one move are probably of that order, so part of the MCTS preference
+     may be noise. The consistent 77.5% / 70% skew toward moving the lone piece suggests a systematic component as well.
+     Cannot be separated without visit counts or more rollouts.
+
+4.3 extra_turn: 28/40 disagreements (70.0%)
+-------------------------------------------
+Board structure : dice = 6 in 40/40; exactly 1 piece on the board and 3 in base in 40/40. Real choice: bring a 2nd piece out vs move the lone piece.
+GT preference   : bring a piece out. GT does so in 40/40.
+MCTS preference : advance the existing piece. MCTS moves the existing piece in 28/40 and brings one out in 12/40.
+[DATA] Agreement 30.0% vs 50.0% chance (p 0.017): BELOW chance, i.e. a systematic opposite preference.
+[DERIVED] 1-ply evaluator: bring-out = +0.05 (leaves base) +0.0025 (1 square) +0.01 (start square is safe) = 0.0625;
+          moving the lone piece 6 squares = 0.015 (+0.01 if it lands safe). The margin is fixed by the weights, independent of the board,
+          which is why GT chooses bring-out in 40/40 at depth 1, 2 and 3 alike.
+[DATA] MCTS moves the lone piece, by how far that piece has already travelled:
+         lone-piece progress 0-17   n=15  MCTS moves it 12
+         lone-piece progress 18-34  n=15  MCTS moves it 13
+         lone-piece progress 35-52  n=10  MCTS moves it  3
+         late (35-52) vs earlier: 3/10 vs 25/30; Fisher exact p = 0.003
+[DATA] Agreement by player count: 2p 6/14, 3p 4/13, 4p 2/13
+[DATA] GT depth 3 changes 0/40 labels; MCTS matches depth 3 on 12/40. The GT label here is depth-stable.
+[DATA] Spot-design note: GT's choice is the lowest legal index in 40/40 spots (base tokens come first).
+Likely causes: identical to 4.2 (same board structure, same weight-driven GT rule).
+[DATA] MCTS brings a piece out in 7/10 spots where the lone piece is late in its lap (Fisher p = 0.003); the same direction
+       appears in 4.2 (4/9) but is not significant (p = 0.168).
+[HYPOTHESIS] A runner close to home has less left to gain from another 6, so MCTS spends the move on development there.
+Together 4.2 and 4.3 are the 'develop your board' half of the GT strategy that the paper credits GT with; an independent
+agent does not reproduce it (agreement 22.5% and 30.0%, below the 50% chance level).
+
+4.4 blocked: 22/40 disagreements (55.0%)
+----------------------------------------
+Board structure : legal moves per spot = {1: 1, 2: 31, 3: 8}. 1 forced-move spot (agreement is trivial there).
+[DERIVED] Among the 31 two-move spots, 27 have IDENTICAL 1-ply evaluator value: both options advance the same dice,
+          and neither captures, lands safe, or leaves base. The 'blocked' piece is simply not a legal option; what remains is
+          a choice between two equivalent plain advances.
+[DATA] GT picks the lower-index legal move in 26/31 two-move spots (84%); MCTS in 14/31 (45%, i.e. chance).
+[DATA] In the 14 two-move disagreements GT took the lower index 13 times.
+[DATA] GT's own depth-2 vs depth-3 labels differ on 6/40 blocked spots (depth2 -> depth3 token: {(1, 2): 6}): the GT label is unstable here.
+[DATA] Split of the 22 disagreements: 14 are two-move indifferent advances (above); 8 are 3-move spots where GT brings a piece out and
+       MCTS does not (same weight-driven pattern as 4.2/4.3, GT picks bring_out in 8/8); the remaining 0 are other.
+[DATA] Agreement 45.0% vs 47.9% chance (p 0.754): statistically at chance.
+Likely causes:
+  1. GT's label is mostly the tie-break convention (strict '>' keeps the lowest index) plus small opponent-reply effects.
+  2. MCTS is near-random on near-indifferent choices. Neither agent supplies a meaningful reference label here.
+  3. The category tests legality (block_rate, invalid rate), metrics that do not use GT. Including it in GT-alignment adds noise.
+
+4.5 home_entry: 20/40 disagreements (50.0%)
+-------------------------------------------
+Board structure : every spot offers {('advance', 'home_path'): 40} (home-path move vs plain main-board advance).
+GT preference   : advance on the main board; GT enters the home path in only 5/40.
+MCTS preference : enter the home path in 25/40 (62.5%).
+[DATA] All 20 disagreements are 'GT advance, MCTS home_path': 20/20.
+[DERIVED] The evaluator counts progress as rel+1 on the main board but as 52+home_step on the home path (= rel, one less).
+          Entering the home path therefore costs exactly one progress unit (0.0025) against a same-length advance. Measured on
+          these boards, 1-ply (advance minus home-path), in progress units: {1.0: 40}.
+          That one-unit gap is the only 1-ply difference, and the 1-ply argmax equals GT's label in 35/40 spots.
+[DATA] Stored GT depth sweep (home_entry_depth_sweep.txt), share of spots where GT enters the home path: depth 1: 0/40, depth 2: 5/40, depth 3: 20/40, depth 4: 31/40, depth 5: 38/40.
+       MCTS (25/40) sits between GT depth 3 and depth 4: GT's preference moves toward MCTS as search deepens.
+[DATA] MCTS matches GT depth 3 on 23/40 vs 20/40 for depth 2 (GT d2 != d3 on 15/40).
+[DATA] Agreement 50.0% vs 50.0% chance: at chance.
+Likely causes:
+  1. [DERIVED] Evaluator off-by-one at the main-board / home-path boundary penalises home entry by one progress unit; with depth 2
+     this is enough to make GT prefer a plain advance. This is the best-supported single-cause explanation in this study.
+  2. [DATA] GT's label is depth-unstable (15/40 change at depth 3; 95% home entry by depth 5). MCTS has no depth cutoff and
+     prefers the home path in most spots.
+  3. Consequence: the paper's reading of GT as not prioritising home entry (Table 10 GT home-entry rate 0.13) is an artifact, so
+     LLM-GT alignment in this category should not be interpreted as a strategy signal.
+
+==============================================================================
+5. OTHER CATEGORIES (shorter)
+==============================================================================
+
+overshoot: 20/40 disagreements (50.0%)
+--------------------------------------
+[DATA] Every spot has exactly 2 legal moves, both plain advances. 1-ply evaluator values are identical in 40/40.
+[DATA] GT takes the lower index in 31/40; MCTS in 17/40. Agreement 50.0% = 50.0% chance. GT d2 != d3 on 5/40.
+Cause: same as blocked. The illegal (overshooting) piece just removes an option; the remaining choice is near-indifferent by
+construction, so these 20 disagreements carry no strategic information about either agent. (The paper's overshoot metrics do not use GT.)
+
+safe: 15/40 disagreements (37.5%)
+---------------------------------
+[DATA] GT lands on the safe square in 35/40 (87.5%), MCTS in 26/40 (65.0%). Types: GT safe_sq -> MCTS advance: 12;  GT advance -> MCTS safe_sq: 3
+[DERIVED] The only evaluator difference between the options is the +0.01 safe-square bonus, so GT's label is decided by that single weight.
+Disagreements by player count: 2p 7, 3p 3, 4p 5. Agreement is not significantly different from chance (p above).
+[HYPOTHESIS] MCTS values a safe-square landing less than GT's fixed +0.01 bonus does. Both are defensible; a mild, spread-out disagreement.
+
+capture_vs_openexisting: 12/40 disagreements (30.0%)
+----------------------------------------------------
+[DATA] All 12 are 'GT brings a piece out, MCTS captures' (dice = 6). They occur only with 3 or 4 players (3p 3, 4p 9); with 2 players agreement is 14/14.
+[DERIVED] GT's multi-player evaluator is centred on the mean of all players, so a capture credits only 1/n of the victim's loss
+          while own gains count (n-1)/n. Capture beats bring-out (own gain 0.0625 vs 0.015 for a 6-square capture move) only if
+          victim_progress > (n-1)*19 - 20, i.e. any capture for n=2, > 18 for n=3, > 37 for n=4.
+[DATA] 2p: victim progress where GT captures: [10, 11, 12, 13, 13, 19, 19, 19, 24, 32, 32, 44, 45, 51]
+       2p: victim progress where GT brings out: []
+[DATA] 3p: victim progress where GT captures: [21, 21, 23, 24, 26, 34, 42, 42, 49, 49]
+       3p: victim progress where GT brings out: [12, 16, 16]
+[DATA] 4p: victim progress where GT captures: [32, 42, 49]
+       4p: victim progress where GT brings out: [5, 6, 8, 13, 16, 16, 23, 25, 29, 34]
+       Observed split matches the derived thresholds (3p: out at 12-16, capture from 21; 4p: out at 5-34, capture mostly from 42), with one 4p exception.
+       Mean victim progress in the 12 disagreements = 17.2 vs 25.4 over all 40 spots: low-value captures.
+Cause: GT's player-count-dependent discounting of captures; MCTS captures in 39/40.
+(Compatible with the weak 4-player tournament result in GT_validation_REPORT.md, but this analysis does not show a causal link.)
+
+capture_vs_home: 7/40 disagreements (17.5%)
+-------------------------------------------
+[DATA] GT captures, MCTS enters the home path. Player counts of disagreements: 2p 0, 3p 3, 4p 4; agreement with 2 players = 14/14.
+[DATA] Mean progress of the captured piece in disagreements = 8.6 (spot average over all boards 26.5): low-value captures.
+
+capture: 5/40 disagreements (12.5%)
+-----------------------------------
+[DATA] GT brings out / advances, MCTS captures. Player counts of disagreements: 2p 0, 3p 2, 4p 3; agreement with 2 players = 14/14.
+[DATA] Mean progress of the captured piece in disagreements = 7.2 (spot average over all boards 26.6): low-value captures.
+
+capture_vs_safe: 3/40 disagreements (7.5%)
+------------------------------------------
+[DATA] GT captures, MCTS takes the safe square (2) or GT brings out (1). Player counts of disagreements: 2p 0, 3p 1, 4p 2; agreement with 2 players = 14/14.
+[DATA] Mean progress of the captured piece in disagreements = 13.0 (spot average over all boards 28.6): low-value captures.
+
+grudge: 6/80 disagreements (7.5%)
+---------------------------------
+[DATA] both pick a capture, but with different pieces (different victim). Player counts of disagreements: 2p 0, 3p 2, 4p 4; agreement with 2 players = 28/28.
+
+Common feature of these four plus capture_vs_openexisting: the disagreements are concentrated on LOW-value captures (victim barely
+advanced) and occur only with 3-4 players. The direction differs by alternative:
+  - capture, capture_vs_openexisting: GT declines the low-value capture for a bring-out/advance and MCTS captures. [DERIVED] GT's
+    1/n-centred evaluator explains this side (threshold shown for capture_vs_openexisting).
+  - capture_vs_home, capture_vs_safe: GT captures and MCTS declines the low-value capture for the home/safe move. [HYPOTHESIS] MCTS sees
+    little win-probability gain in sending back a piece that has hardly moved.
+MCTS still agrees with GT on capture-first in most spots (82.5-92.5%), the part of GT behaviour that the paper's
+capture-vs-safe/home conclusions rely on.
+
+==============================================================================
+6. PLAYER-COUNT EFFECT
+==============================================================================
+[DATA] Agreement by players: 2p 121/182 (66.5%);  3p 107/169 (63.3%);  4p 88/169 (52.1%)
+
+category                         2p       3p       4p
+blocked                       4/14     7/13     7/13 
+capture                      14/14    11/13    10/13 
+capture_vs_home              14/14    10/13     9/13 
+capture_vs_home_finish        1/14     2/13     2/13 
+capture_vs_openexisting      14/14    10/13     4/13 
+capture_vs_safe              14/14    12/13    11/13 
+extra_turn                    6/14     4/13     2/13 
+grudge                       28/28    24/26    22/26 
+home_entry                    7/14     7/13     6/13 
+overshoot                     7/14     7/13     6/13 
+safe                          7/14    10/13     8/13 
+safe_vs_openexisting          5/14     3/13     1/13 
+
+[DATA] Capture-related categories (capture, capture_vs_home, capture_vs_openexisting, capture_vs_safe, grudge): 33 disagreements, of which in 2-player games: 0. Agreement in 2p is perfect in all five.
+[DERIVED] In 2p, GT's evaluator is exact zero-sum (own minus opponent); with 3-4p it is centred on the mean, which discounts captures
+          (derived for capture_vs_openexisting). This is consistent with every capture-category disagreement being a 3-4p one.
+[DATA] The decline with more players is not limited to capture categories: extra_turn goes 6/14 -> 2/13 and safe_vs_openexisting 5/14 -> 1/13 (2p -> 4p); its cause is not identified here.
+[HYPOTHESIS] MCTS may also be noisier with more opponents (lower win rates, longer games); not testable from the stored artifacts.
+[DATA] Categories are balanced across player counts by design (13-14 per cell), so the gap is not a mix effect.
+
+==============================================================================
+7. HOW MUCH OF GT'S LABEL IS THE EVALUATOR ALONE?
+==============================================================================
+[DERIVED] The 1-ply evaluator argmax (ties -> lowest index) equals GT's depth-2 move in 490/520 entries (94.2%) and MCTS's move in 300/520 (57.7%).
+category                    argmax==GT  argmax==MCTS
+blocked                         36/40        14/40 
+capture                         39/40        36/40 
+capture_vs_home                 39/40        32/40 
+capture_vs_home_finish          40/40         5/40 
+capture_vs_openexisting         39/40        27/40 
+capture_vs_safe                 40/40        37/40 
+extra_turn                      40/40        12/40 
+grudge                          76/80        70/80 
+home_entry                      35/40        15/40 
+overshoot                       31/40        17/40 
+safe                            35/40        26/40 
+safe_vs_openexisting            40/40         9/40 
+Reading: GT's labels are almost entirely determined by its evaluator weights; the depth-2 lookahead rarely changes the 1-ply choice.
+So most disagreements with an independent agent are disagreements with the weights (0.20 finish, 0.05 base, 0.01 safe, 1/n victim share).
+
+==============================================================================
+8. KEY OBSERVATIONS
+==============================================================================
+1. The 204 disagreements are five different phenomena, not one:
+   (a) Opposite weight-driven preferences, agreement BELOW chance: capture_vs_home_finish, safe_vs_openexisting, extra_turn = 94 (46.1%).
+   (b) Near-indifferent choices where agreement is AT chance and GT's label is mostly its lowest-index tie-break: blocked, overshoot = 42 (20.6%)
+       (of the 22 blocked ones, 8 are GT bring-out spots with the same cause as (a), so the purely indifferent share is 34).
+   (c) A GT evaluator discontinuity plus depth instability: home_entry = 20 (9.8%).
+   (d) Low-value captures in 3-4 player games: capture, capture_vs_home, capture_vs_openexisting, capture_vs_safe, grudge = 33 (16.2%);
+       none occur in 2-player games. GT's centred multi-player evaluator explains the capture / capture_vs_openexisting direction [DERIVED];
+       MCTS's reluctance to take trivial captures is the likely cause on capture_vs_home / capture_vs_safe [HYPOTHESIS].
+   (e) Safe-square weight: safe = 15 (7.4%).
+   Check: 94 + 42 + 20 + 33 + 15 = 204.
+2. MCTS corroborates GT where the paper's capture conclusions live: 87.5% capture, 82.5% capture_vs_home, 92.5% capture_vs_safe, 70%
+   capture_vs_openexisting, 92.5% grudge, with 100% agreement in 2-player games.
+3. MCTS does NOT corroborate GT's finish-over-capture or develop-over-advance preferences (12.5%, 22.5%, 30.0% agreement; chance 50%).
+   These are the preferences behind the paper's finisher/builder story, and GT's versions of them are fixed by its evaluator weights.
+4. The GT label in blocked, overshoot and home_entry (120 entries) is not a usable reference: indifferent, tie-break driven, or
+   depth/off-by-one driven. MCTS agreement there equals chance (45.0%, 50.0%, 50.0%).
+5. The agreement rise from chance (49%) to 61% overall is carried by the capture categories; elsewhere the two agents are at or below chance.
+
+==============================================================================
+9. CATEGORIES MOST RESPONSIBLE FOR THE OVERALL DISAGREEMENT
+==============================================================================
+  1. capture_vs_home_finish      35 disagreements  (17.2% of total, cumulative 17.2%)
+  2. safe_vs_openexisting        31 disagreements  (15.2% of total, cumulative 32.4%)
+  3. extra_turn                  28 disagreements  (13.7% of total, cumulative 46.1%)
+  4. blocked                     22 disagreements  (10.8% of total, cumulative 56.9%)
+  5. home_entry                  20 disagreements  ( 9.8% of total, cumulative 66.7%)
+  6. overshoot                   20 disagreements  ( 9.8% of total, cumulative 76.5%)
+The top six categories account for 156 of 204 (76.5%). If the three 'systematic opposite' categories had agreed only at chance
+(60 agreements instead of 26), overall agreement would be 67.3% instead of 60.8% (arithmetic bound, not a rerun).
+
+==============================================================================
+10. IMPLICATIONS, LIMITS, AND FOLLOW-UPS (none of the follow-ups were run)
+==============================================================================
+Implications for the paper
+  - Do not present either GT or MCTS as ground truth. Report alignment against both and highlight the 316 entries where they agree
+    as a consensus subset (strongest in the capture categories).
+  - Soften Sec. 6.3-6.4: 'finishing is correct, capturing merely delays' and 'develop and finish' are properties of GT's weights;
+    MCTS contradicts both.
+  - Treat blocked, overshoot and home_entry as legality / indifference checks, not GT-alignment categories.
+  - Report alignment by player count (2p versus 3-4p) because GT's multi-player labels differ in kind, not just in degree.
+Limits of this analysis
+  - MCTS is a single seed with 1000 random rollouts (win probability under random continuation), itself a noisy and imperfect reference.
+  - n = 40 per category; p-values use the category's mean merged-piece chance rate, which is approximate for mixed spots.
+  - The 1-ply evaluator is an offline re-implementation of GT's cutoff function, used as a diagnostic; it reproduces 94% of GT labels but is not GT.
+  - Causes marked [HYPOTHESIS] are untested.
+Cheap follow-ups that would settle the open points
+  - Re-run MCTS on capture_vs_home_finish, safe_vs_openexisting and extra_turn only, saving last_search_info (visits, win rates) at
+    1000 and 10000 rollouts: shows whether the MCTS preference is signal or noise.
+  - Evaluator sensitivity sweep on GT (finish 0.20, base 0.05, safe 0.01) and a fix for the home-path off-by-one: shows how many labels move.
