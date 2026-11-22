@@ -1,0 +1,49 @@
+category,choice,model,k,n_valid,rate,ci_low,ci_high,gt_rate,gt_outside_ci
+capture_vs_safe,capture,QP,17,40,0.425,0.2851,0.578,0.98,True
+capture_vs_safe,capture,Q7B,11,18,0.6111,0.3862,0.7969,0.98,True
+capture_vs_safe,capture,DS,4,40,0.1,0.0396,0.2305,0.98,True
+capture_vs_safe,capture,Haiku,25,38,0.6579,0.4989,0.7879,0.98,True
+capture_vs_safe,capture,Scout,10,34,0.2941,0.1683,0.4617,0.98,True
+capture_vs_safe,capture,Gemma,11,32,0.3438,0.2041,0.5169,0.98,True
+capture_vs_home,capture,QP,23,40,0.575,0.422,0.7149,0.98,True
+capture_vs_home,capture,Q7B,2,13,0.1538,0.0433,0.4223,0.98,True
+capture_vs_home,capture,DS,29,40,0.725,0.5717,0.8389,0.98,True
+capture_vs_home,capture,Haiku,8,40,0.2,0.105,0.3476,0.98,True
+capture_vs_home,capture,Scout,28,36,0.7778,0.6192,0.8828,0.98,True
+capture_vs_home,capture,Gemma,29,35,0.8286,0.6732,0.919,0.98,True
+capture_vs_home_finish,finish,QP,32,40,0.8,0.6524,0.895,1.0,True
+capture_vs_home_finish,finish,Q7B,16,16,1.0,0.8064,1.0,1.0,False
+capture_vs_home_finish,finish,DS,0,40,0.0,0.0,0.0876,1.0,True
+capture_vs_home_finish,finish,Haiku,35,40,0.875,0.7389,0.9454,1.0,True
+capture_vs_home_finish,finish,Scout,2,37,0.0541,0.015,0.177,1.0,True
+capture_vs_home_finish,finish,Gemma,0,35,0.0,0.0,0.0989,1.0,True
+capture_vs_openexisting,capture,QP,25,40,0.625,0.4703,0.7578,0.68,False
+capture_vs_openexisting,capture,Q7B,20,40,0.5,0.352,0.648,0.68,True
+capture_vs_openexisting,capture,DS,9,40,0.225,0.1232,0.375,0.68,True
+capture_vs_openexisting,capture,Haiku,37,40,0.925,0.8014,0.9742,0.68,True
+capture_vs_openexisting,capture,Scout,10,37,0.2703,0.154,0.4298,0.68,True
+capture_vs_openexisting,capture,Gemma,12,39,0.3077,0.1857,0.4642,0.68,True
+capture,capture,QP,20,40,0.5,0.352,0.648,0.88,True
+capture,capture,Q7B,11,20,0.55,0.3421,0.7418,0.88,True
+capture,capture,DS,6,40,0.15,0.0706,0.2907,0.88,True
+capture,capture,Haiku,21,40,0.525,0.375,0.6706,0.88,True
+capture,capture,Scout,8,36,0.2222,0.1172,0.3808,0.88,True
+capture,capture,Gemma,10,34,0.2941,0.1683,0.4617,0.88,True
+safe,safe,QP,11,40,0.275,0.1611,0.4283,0.88,True
+safe,safe,Q7B,9,19,0.4737,0.2733,0.6829,0.88,True
+safe,safe,DS,5,40,0.125,0.0546,0.2611,0.88,True
+safe,safe,Haiku,30,40,0.75,0.5981,0.8581,0.88,True
+safe,safe,Scout,2,37,0.0541,0.015,0.177,0.88,True
+safe,safe,Gemma,6,39,0.1538,0.0725,0.2973,0.88,True
+home_entry,home entry,QP,17,40,0.425,0.2851,0.578,0.13,True
+home_entry,home entry,Q7B,11,14,0.7857,0.5241,0.9243,0.13,True
+home_entry,home entry,DS,7,40,0.175,0.0875,0.3195,0.13,False
+home_entry,home entry,Haiku,33,40,0.825,0.6805,0.9125,0.13,True
+home_entry,home entry,Scout,5,35,0.1429,0.0626,0.2938,0.13,False
+home_entry,home entry,Gemma,6,37,0.1622,0.0765,0.3114,0.13,False
+extra_turn,bring-out,QP,12,40,0.3,0.1807,0.4543,1.0,True
+extra_turn,bring-out,Q7B,24,40,0.6,0.446,0.7365,1.0,True
+extra_turn,bring-out,DS,35,40,0.875,0.7389,0.9454,1.0,True
+extra_turn,bring-out,Haiku,2,40,0.05,0.0138,0.165,1.0,True
+extra_turn,bring-out,Scout,28,40,0.7,0.5457,0.8193,1.0,True
+extra_turn,bring-out,Gemma,33,40,0.825,0.6805,0.9125,1.0,True

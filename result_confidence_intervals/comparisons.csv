@@ -1,0 +1,12 @@
+comparison,rate_1,n_1,rate_2,n_2,difference,diff_ci_low,diff_ci_high,p_fisher
+Compliance: Gemma vs Qwen-Plus mean invalid rate,0.0955,440,0.0409,440,0.0545,0.0214,0.089,0.0019
+Compliance: Qwen-2.5-7B vs Scout mean invalid rate,0.3932,440,0.0841,440,0.3091,0.2556,0.3606,0.0
+Archetype: Haiku vs DeepSeek finish rate (capture_vs_home_finish),0.875,40,0.0,40,0.875,0.7131,0.9454,0.0
+Archetype: DeepSeek vs Haiku bring-out rate (extra_turn),0.875,40,0.05,40,0.825,0.6468,0.9042,0.0
+Archetype: Gemma vs Haiku capture rate (capture_vs_home),0.8286,35,0.2,40,0.6286,0.4143,0.7597,0.0
+Archetype: Gemma vs Qwen-2.5-7B capture rate (capture_vs_home),0.8286,35,0.1538,13,0.6747,0.3645,0.8176,0.0
+Risk: Haiku vs DeepSeek capture rate (capture_vs_safe),0.6579,38,0.1,40,0.5579,0.3522,0.7012,0.0
+Grudge: Qwen-Plus vs Haiku change rate,0.325,40,0.05,40,0.275,0.1057,0.434,0.0031
+Grudge: DeepSeek vs Haiku change rate,0.2,40,0.05,40,0.15,0.0008,0.3019,0.0872
+Grudge: Qwen-Plus vs DeepSeek change rate,0.325,40,0.2,40,0.125,-0.0679,0.3066,0.3095
+Grudge: DeepSeek vs Qwen-2.5-7B change rate,0.2,40,0.0,40,0.2,0.0708,0.3476,0.0053

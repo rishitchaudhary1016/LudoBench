@@ -1,0 +1,7 @@
+model,k_changed,n_pairs,n_assumed,rate,ci_low,ci_high
+QP,13,40,True,0.325,0.2008,0.4798
+Q7B,0,40,True,0.0,0.0,0.0876
+DS,8,40,True,0.2,0.105,0.3476
+Haiku,2,40,True,0.05,0.0138,0.165
+Scout,2,36,False,0.0556,0.0154,0.1814
+Gemma,1,40,True,0.025,0.0044,0.1288

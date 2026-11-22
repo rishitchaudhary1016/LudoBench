@@ -1,0 +1,7 @@
+model,n_valid_approx,agreement,ci_low,ci_high,chance_index,p_vs_chance,chance_inside_ci
+QP,499,0.43,0.3881,0.4747,0.4325,0.964,True
+Q7B,316,0.46,0.4047,0.514,0.4325,0.3637,True
+DS,519,0.46,0.4181,0.5035,0.4325,0.1992,True
+Haiku,516,0.45,0.4072,0.4927,0.4325,0.4501,True
+Scout,476,0.4,0.3561,0.4438,0.4325,0.1515,True
+Gemma,470,0.46,0.415,0.5048,0.4325,0.2446,True

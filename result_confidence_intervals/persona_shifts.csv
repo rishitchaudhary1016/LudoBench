@@ -1,0 +1,169 @@
+category,metric,model,persona,rate_none,rate_persona,n_assumed,shift,shift_ci_low,shift_ci_high,p_fisher,expected_direction
+capture_vs_home_finish,capture,QP,aggressive,0.2,0.925,40,0.725,0.5325,0.832,0.0,
+capture_vs_home_finish,capture,QP,greedy,0.2,0.125,40,-0.075,-0.2385,0.091,0.5458,-
+capture_vs_home_finish,capture,QP,safe,0.2,0.625,40,0.425,0.2112,0.5883,0.0002,
+capture_vs_home_finish,capture,QP,unforgiving,0.2,0.575,40,0.375,0.1624,0.5441,0.0011,
+capture_vs_home_finish,capture,Q7B,aggressive,0.0,0.125,16,0.125,-0.0885,0.3602,0.4839,
+capture_vs_home_finish,capture,Q7B,greedy,0.0,0.0625,16,0.0625,-0.1378,0.2833,1.0,-
+capture_vs_home_finish,capture,Q7B,safe,0.0,0.0,16,0.0,-0.1936,0.1936,1.0,
+capture_vs_home_finish,capture,Q7B,unforgiving,0.0,0.1875,16,0.1875,-0.0411,0.4301,0.2258,
+capture_vs_home_finish,capture,DS,aggressive,1.0,1.0,40,0.0,-0.0876,0.0876,1.0,
+capture_vs_home_finish,capture,DS,greedy,1.0,1.0,40,0.0,-0.0876,0.0876,1.0,-
+capture_vs_home_finish,capture,DS,safe,1.0,1.0,40,0.0,-0.0876,0.0876,1.0,
+capture_vs_home_finish,capture,DS,unforgiving,1.0,1.0,40,0.0,-0.0876,0.0876,1.0,
+capture_vs_home_finish,capture,Haiku,aggressive,0.125,0.05,40,-0.075,-0.2158,0.0599,0.4315,
+capture_vs_home_finish,capture,Haiku,greedy,0.125,0.15,40,0.025,-0.1326,0.1824,1.0,-
+capture_vs_home_finish,capture,Haiku,safe,0.125,0.025,40,-0.1,-0.2377,0.0254,0.2007,
+capture_vs_home_finish,capture,Haiku,unforgiving,0.125,0.25,40,0.125,-0.0488,0.2925,0.2515,
+capture_vs_home_finish,capture,Scout,aggressive,0.9459,0.973,37,0.027,-0.0909,0.152,1.0,
+capture_vs_home_finish,capture,Scout,greedy,0.9459,1.0,37,0.0541,-0.0478,0.177,0.4932,-
+capture_vs_home_finish,capture,Scout,safe,0.9459,0.9189,37,-0.027,-0.1646,0.1069,1.0,
+capture_vs_home_finish,capture,Scout,unforgiving,0.9459,1.0,37,0.0541,-0.0478,0.177,0.4932,
+capture_vs_home_finish,capture,Gemma,aggressive,1.0,1.0,35,0.0,-0.0989,0.0989,1.0,
+capture_vs_home_finish,capture,Gemma,greedy,1.0,1.0,35,0.0,-0.0989,0.0989,1.0,-
+capture_vs_home_finish,capture,Gemma,safe,1.0,0.9429,35,-0.0571,-0.1861,0.05,0.4928,
+capture_vs_home_finish,capture,Gemma,unforgiving,1.0,0.9429,35,-0.0571,-0.1861,0.05,0.4928,
+capture_vs_home_finish,finish,QP,aggressive,0.8,0.075,40,-0.725,-0.832,-0.5325,0.0,
+capture_vs_home_finish,finish,QP,greedy,0.8,0.875,40,0.075,-0.091,0.2385,0.5458,+
+capture_vs_home_finish,finish,QP,safe,0.8,0.375,40,-0.425,-0.5883,-0.2112,0.0002,
+capture_vs_home_finish,finish,QP,unforgiving,0.8,0.425,40,-0.375,-0.5441,-0.1624,0.0011,
+capture_vs_home_finish,finish,Q7B,aggressive,1.0,0.875,16,-0.125,-0.3602,0.0885,0.4839,
+capture_vs_home_finish,finish,Q7B,greedy,1.0,0.9375,16,-0.0625,-0.2833,0.1378,1.0,+
+capture_vs_home_finish,finish,Q7B,safe,1.0,1.0,16,0.0,-0.1936,0.1936,1.0,
+capture_vs_home_finish,finish,Q7B,unforgiving,1.0,0.8125,16,-0.1875,-0.4301,0.0411,0.2258,
+capture_vs_home_finish,finish,DS,aggressive,0.0,0.0,40,0.0,-0.0876,0.0876,1.0,
+capture_vs_home_finish,finish,DS,greedy,0.0,0.0,40,0.0,-0.0876,0.0876,1.0,+
+capture_vs_home_finish,finish,DS,safe,0.0,0.0,40,0.0,-0.0876,0.0876,1.0,
+capture_vs_home_finish,finish,DS,unforgiving,0.0,0.0,40,0.0,-0.0876,0.0876,1.0,
+capture_vs_home_finish,finish,Haiku,aggressive,0.875,0.95,40,0.075,-0.0599,0.2158,0.4315,
+capture_vs_home_finish,finish,Haiku,greedy,0.875,0.85,40,-0.025,-0.1824,0.1326,1.0,+
+capture_vs_home_finish,finish,Haiku,safe,0.875,0.975,40,0.1,-0.0254,0.2377,0.2007,
+capture_vs_home_finish,finish,Haiku,unforgiving,0.875,0.75,40,-0.125,-0.2925,0.0488,0.2515,
+capture_vs_home_finish,finish,Scout,aggressive,0.0541,0.027,37,-0.027,-0.152,0.0909,1.0,
+capture_vs_home_finish,finish,Scout,greedy,0.0541,0.0,37,-0.0541,-0.177,0.0478,0.4932,+
+capture_vs_home_finish,finish,Scout,safe,0.0541,0.0811,37,0.027,-0.1069,0.1646,1.0,
+capture_vs_home_finish,finish,Scout,unforgiving,0.0541,0.0,37,-0.0541,-0.177,0.0478,0.4932,
+capture_vs_home_finish,finish,Gemma,aggressive,0.0,0.0,35,0.0,-0.0989,0.0989,1.0,
+capture_vs_home_finish,finish,Gemma,greedy,0.0,0.0,35,0.0,-0.0989,0.0989,1.0,+
+capture_vs_home_finish,finish,Gemma,safe,0.0,0.0571,35,0.0571,-0.05,0.1861,0.4928,
+capture_vs_home_finish,finish,Gemma,unforgiving,0.0,0.0571,35,0.0571,-0.05,0.1861,0.4928,
+capture_vs_safe,capture,QP,aggressive,0.425,0.15,40,-0.275,-0.4474,-0.0766,0.0126,+
+capture_vs_safe,capture,QP,greedy,0.425,0.525,40,0.1,-0.1143,0.302,0.5021,
+capture_vs_safe,capture,QP,safe,0.425,0.4,40,-0.025,-0.2301,0.1831,1.0,
+capture_vs_safe,capture,QP,unforgiving,0.425,0.15,40,-0.275,-0.4474,-0.0766,0.0126,
+capture_vs_safe,capture,Q7B,aggressive,0.6111,0.7222,18,0.1111,-0.1853,0.383,0.7247,+
+capture_vs_safe,capture,Q7B,greedy,0.6111,0.7778,18,0.1667,-0.129,0.4276,0.4705,
+capture_vs_safe,capture,Q7B,safe,0.6111,0.6111,18,0.0,-0.2918,0.2918,1.0,
+capture_vs_safe,capture,Q7B,unforgiving,0.6111,0.3889,18,-0.2222,-0.485,0.0959,0.3175,
+capture_vs_safe,capture,DS,aggressive,0.1,0.2,40,0.1,-0.0614,0.2595,0.3482,+
+capture_vs_safe,capture,DS,greedy,0.1,0.225,40,0.125,-0.0405,0.2867,0.2247,
+capture_vs_safe,capture,DS,safe,0.1,0.15,40,0.05,-0.1028,0.2031,0.737,
+capture_vs_safe,capture,DS,unforgiving,0.1,0.25,40,0.15,-0.0195,0.3135,0.1395,
+capture_vs_safe,capture,Haiku,aggressive,0.6579,0.8421,38,0.1842,-0.0115,0.3638,0.1106,+
+capture_vs_safe,capture,Haiku,greedy,0.6579,0.7368,38,0.0789,-0.1248,0.2742,0.6181,
+capture_vs_safe,capture,Haiku,safe,0.6579,0.8684,38,0.2105,0.0182,0.3859,0.0571,
+capture_vs_safe,capture,Haiku,unforgiving,0.6579,0.7105,38,0.0526,-0.152,0.2515,0.8054,
+capture_vs_safe,capture,Scout,aggressive,0.2941,0.1765,34,-0.1176,-0.3093,0.0848,0.3917,+
+capture_vs_safe,capture,Scout,greedy,0.2941,0.2059,34,-0.0882,-0.2846,0.1169,0.5763,
+capture_vs_safe,capture,Scout,safe,0.2941,0.0882,34,-0.2059,-0.3831,-0.0167,0.0615,
+capture_vs_safe,capture,Scout,unforgiving,0.2941,0.1765,34,-0.1176,-0.3093,0.0848,0.3917,
+capture_vs_safe,capture,Gemma,aggressive,0.3438,0.125,32,-0.2188,-0.4076,-0.0096,0.0746,+
+capture_vs_safe,capture,Gemma,greedy,0.3438,0.1562,32,-0.1875,-0.3815,0.0258,0.1477,
+capture_vs_safe,capture,Gemma,safe,0.3438,0.125,32,-0.2188,-0.4076,-0.0096,0.0746,
+capture_vs_safe,capture,Gemma,unforgiving,0.3438,0.1562,32,-0.1875,-0.3815,0.0258,0.1477,
+capture_vs_safe,safe,QP,aggressive,0.575,0.85,40,0.275,0.0766,0.4474,0.0126,
+capture_vs_safe,safe,QP,greedy,0.575,0.475,40,-0.1,-0.302,0.1143,0.5021,
+capture_vs_safe,safe,QP,safe,0.575,0.6,40,0.025,-0.1831,0.2301,1.0,+
+capture_vs_safe,safe,QP,unforgiving,0.575,0.85,40,0.275,0.0766,0.4474,0.0126,
+capture_vs_safe,safe,Q7B,aggressive,0.3889,0.2778,18,-0.1111,-0.383,0.1853,0.7247,
+capture_vs_safe,safe,Q7B,greedy,0.3889,0.2222,18,-0.1667,-0.4276,0.129,0.4705,
+capture_vs_safe,safe,Q7B,safe,0.3889,0.3889,18,0.0,-0.2918,0.2918,1.0,+
+capture_vs_safe,safe,Q7B,unforgiving,0.3889,0.6111,18,0.2222,-0.0959,0.485,0.3175,
+capture_vs_safe,safe,DS,aggressive,0.9,0.8,40,-0.1,-0.2595,0.0614,0.3482,
+capture_vs_safe,safe,DS,greedy,0.9,0.775,40,-0.125,-0.2867,0.0405,0.2247,
+capture_vs_safe,safe,DS,safe,0.9,0.85,40,-0.05,-0.2031,0.1028,0.737,+
+capture_vs_safe,safe,DS,unforgiving,0.9,0.75,40,-0.15,-0.3135,0.0195,0.1395,
+capture_vs_safe,safe,Haiku,aggressive,0.3421,0.1579,38,-0.1842,-0.3638,0.0115,0.1106,
+capture_vs_safe,safe,Haiku,greedy,0.3421,0.2632,38,-0.0789,-0.2742,0.1248,0.6181,
+capture_vs_safe,safe,Haiku,safe,0.3421,0.1316,38,-0.2105,-0.3859,-0.0182,0.0571,+
+capture_vs_safe,safe,Haiku,unforgiving,0.3421,0.2895,38,-0.0526,-0.2515,0.152,0.8054,
+capture_vs_safe,safe,Scout,aggressive,0.7059,0.8235,34,0.1176,-0.0848,0.3093,0.3917,
+capture_vs_safe,safe,Scout,greedy,0.7059,0.7941,34,0.0882,-0.1169,0.2846,0.5763,
+capture_vs_safe,safe,Scout,safe,0.7059,0.9118,34,0.2059,0.0167,0.3831,0.0615,+
+capture_vs_safe,safe,Scout,unforgiving,0.7059,0.8235,34,0.1176,-0.0848,0.3093,0.3917,
+capture_vs_safe,safe,Gemma,aggressive,0.6562,0.875,32,0.2188,0.0096,0.4076,0.0746,
+capture_vs_safe,safe,Gemma,greedy,0.6562,0.8438,32,0.1875,-0.0258,0.3815,0.1477,
+capture_vs_safe,safe,Gemma,safe,0.6562,0.875,32,0.2188,0.0096,0.4076,0.0746,+
+capture_vs_safe,safe,Gemma,unforgiving,0.6562,0.8438,32,0.1875,-0.0258,0.3815,0.1477,
+capture,capture,QP,aggressive,0.5,0.275,40,-0.225,-0.4118,-0.0119,0.0656,+
+capture,capture,QP,greedy,0.5,0.575,40,0.075,-0.1379,0.2787,0.6541,
+capture,capture,QP,safe,0.5,0.375,40,-0.125,-0.3238,0.0891,0.3675,-
+capture,capture,QP,unforgiving,0.5,0.325,40,-0.175,-0.3682,0.0392,0.1726,
+capture,capture,Q7B,aggressive,0.55,0.65,20,0.1,-0.1897,0.3678,0.7475,+
+capture,capture,Q7B,greedy,0.55,0.5,20,-0.05,-0.3276,0.239,1.0,
+capture,capture,Q7B,safe,0.55,0.7,20,0.15,-0.1411,0.409,0.5145,-
+capture,capture,Q7B,unforgiving,0.55,0.65,20,0.1,-0.1897,0.3678,0.7475,
+capture,capture,DS,aggressive,0.15,0.175,40,0.025,-0.1407,0.1899,1.0,+
+capture,capture,DS,greedy,0.15,0.3,40,0.15,-0.0345,0.3235,0.1798,
+capture,capture,DS,safe,0.15,0.075,40,-0.075,-0.2241,0.0719,0.4814,-
+capture,capture,DS,unforgiving,0.15,0.175,40,0.025,-0.1407,0.1899,1.0,
+capture,capture,Haiku,aggressive,0.525,0.9,40,0.375,0.1794,0.5367,0.0004,+
+capture,capture,Haiku,greedy,0.525,0.775,40,0.25,0.0409,0.4313,0.034,
+capture,capture,Haiku,safe,0.525,0.85,40,0.325,0.1225,0.4947,0.0033,-
+capture,capture,Haiku,unforgiving,0.525,0.75,40,0.225,0.0145,0.4099,0.0619,
+capture,capture,Scout,aggressive,0.2222,0.1667,36,-0.0556,-0.2369,0.1294,0.7668,+
+capture,capture,Scout,greedy,0.2222,0.2778,36,0.0556,-0.1429,0.2488,0.7861,
+capture,capture,Scout,safe,0.2222,0.1667,36,-0.0556,-0.2369,0.1294,0.7668,-
+capture,capture,Scout,unforgiving,0.2222,0.1944,36,-0.0278,-0.2137,0.1602,1.0,
+capture,capture,Gemma,aggressive,0.2941,0.1471,34,-0.1471,-0.3339,0.0519,0.2417,+
+capture,capture,Gemma,greedy,0.2941,0.2353,34,-0.0588,-0.2598,0.1484,0.784,
+capture,capture,Gemma,safe,0.2941,0.2059,34,-0.0882,-0.2846,0.1169,0.5763,-
+capture,capture,Gemma,unforgiving,0.2941,0.1471,34,-0.1471,-0.3339,0.0519,0.2417,
+home_entry,home entry,QP,aggressive,0.425,0.325,40,-0.1,-0.2971,0.1087,0.4888,
+home_entry,home entry,QP,greedy,0.425,0.475,40,0.05,-0.1613,0.2551,0.8224,+
+home_entry,home entry,QP,safe,0.425,0.325,40,-0.1,-0.2971,0.1087,0.4888,
+home_entry,home entry,QP,unforgiving,0.425,0.3,40,-0.125,-0.319,0.0833,0.3524,
+home_entry,home entry,Q7B,aggressive,0.7857,0.7143,14,-0.0714,-0.3667,0.2397,1.0,
+home_entry,home entry,Q7B,greedy,0.7857,0.7857,14,0.0,-0.296,0.296,1.0,+
+home_entry,home entry,Q7B,safe,0.7857,0.7857,14,0.0,-0.296,0.296,1.0,
+home_entry,home entry,Q7B,unforgiving,0.7857,0.7143,14,-0.0714,-0.3667,0.2397,1.0,
+home_entry,home entry,DS,aggressive,0.175,0.15,40,-0.025,-0.1899,0.1407,1.0,
+home_entry,home entry,DS,greedy,0.175,0.275,40,0.1,-0.084,0.2766,0.4225,+
+home_entry,home entry,DS,safe,0.175,0.225,40,0.05,-0.1268,0.2237,0.7806,
+home_entry,home entry,DS,unforgiving,0.175,0.25,40,0.075,-0.1055,0.2504,0.5856,
+home_entry,home entry,Haiku,aggressive,0.825,0.975,40,0.15,0.0142,0.296,0.0568,
+home_entry,home entry,Haiku,greedy,0.825,0.925,40,0.1,-0.0515,0.2526,0.3109,+
+home_entry,home entry,Haiku,safe,0.825,0.975,40,0.15,0.0142,0.296,0.0568,
+home_entry,home entry,Haiku,unforgiving,0.825,0.8,40,-0.025,-0.1966,0.1479,1.0,
+home_entry,home entry,Scout,aggressive,0.1429,0.0,35,-0.1429,-0.2938,-0.0155,0.0536,
+home_entry,home entry,Scout,greedy,0.1429,0.0571,35,-0.0857,-0.2422,0.0662,0.4283,+
+home_entry,home entry,Scout,safe,0.1429,0.1143,35,-0.0286,-0.1945,0.1374,1.0,
+home_entry,home entry,Scout,unforgiving,0.1429,0.0571,35,-0.0857,-0.2422,0.0662,0.4283,
+home_entry,home entry,Gemma,aggressive,0.1622,0.0541,37,-0.1081,-0.2623,0.0418,0.2611,
+home_entry,home entry,Gemma,greedy,0.1622,0.027,37,-0.1351,-0.286,0.0052,0.107,+
+home_entry,home entry,Gemma,safe,0.1622,0.0541,37,-0.1081,-0.2623,0.0418,0.2611,
+home_entry,home entry,Gemma,unforgiving,0.1622,0.0541,37,-0.1081,-0.2623,0.0418,0.2611,
+extra_turn,bring-out,QP,aggressive,0.3,0.2,40,-0.1,-0.2812,0.0897,0.4391,
+extra_turn,bring-out,QP,greedy,0.3,0.275,40,-0.025,-0.2168,0.1693,1.0,
+extra_turn,bring-out,QP,safe,0.3,0.3,40,0.0,-0.195,0.195,1.0,
+extra_turn,bring-out,QP,unforgiving,0.3,0.275,40,-0.025,-0.2168,0.1693,1.0,
+extra_turn,bring-out,Q7B,aggressive,0.6,0.3,40,-0.3,-0.4813,-0.082,0.0129,
+extra_turn,bring-out,Q7B,greedy,0.6,0.425,40,-0.175,-0.3705,0.0421,0.1793,
+extra_turn,bring-out,Q7B,safe,0.6,0.425,40,-0.175,-0.3705,0.0421,0.1793,
+extra_turn,bring-out,Q7B,unforgiving,0.6,0.375,40,-0.225,-0.4154,-0.0067,0.0729,
+extra_turn,bring-out,DS,aggressive,0.875,0.55,40,-0.325,-0.4922,-0.1276,0.0026,
+extra_turn,bring-out,DS,greedy,0.875,0.9,40,0.025,-0.1233,0.1739,1.0,
+extra_turn,bring-out,DS,safe,0.875,0.9,40,0.025,-0.1233,0.1739,1.0,
+extra_turn,bring-out,DS,unforgiving,0.875,0.725,40,-0.15,-0.3187,0.0275,0.161,
+extra_turn,bring-out,Haiku,aggressive,0.05,0.05,40,0.0,-0.1206,0.1206,1.0,
+extra_turn,bring-out,Haiku,greedy,0.05,0.025,40,-0.025,-0.1419,0.0849,1.0,
+extra_turn,bring-out,Haiku,safe,0.05,0.05,40,0.0,-0.1206,0.1206,1.0,
+extra_turn,bring-out,Haiku,unforgiving,0.05,0.05,40,0.0,-0.1206,0.1206,1.0,
+extra_turn,bring-out,Scout,aggressive,0.7,0.325,40,-0.375,-0.5471,-0.1564,0.0016,
+extra_turn,bring-out,Scout,greedy,0.7,0.475,40,-0.225,-0.4132,-0.0098,0.0685,
+extra_turn,bring-out,Scout,safe,0.7,0.5,40,-0.2,-0.3901,0.0138,0.1095,
+extra_turn,bring-out,Scout,unforgiving,0.7,0.575,40,-0.125,-0.319,0.0833,0.3524,
+extra_turn,bring-out,Gemma,aggressive,0.825,0.5,40,-0.325,-0.497,-0.1182,0.0041,
+extra_turn,bring-out,Gemma,greedy,0.825,0.575,40,-0.25,-0.4263,-0.0489,0.027,
+extra_turn,bring-out,Gemma,safe,0.825,0.5,40,-0.325,-0.497,-0.1182,0.0041,
+extra_turn,bring-out,Gemma,unforgiving,0.825,0.65,40,-0.175,-0.353,0.0185,0.1263,
