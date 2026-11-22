@@ -123,7 +123,7 @@ def evaluate_spot(
             response_int = int(left.strip())
             response_reason = reason.strip()
         else:
-            m = re.search(r"-?\\d+", text)
+            m = re.search(r"-?\d+", text)
             if m:
                 response_int = int(m.group())
     except Exception:

@@ -393,7 +393,7 @@ def process_spots(spots, out_dir, depth):
             hist = pair[key].get("history_text", "")
             if not hist:
                 continue
-            m = re.search(r"Player\\s+(\\d+)\\s+captured", hist)
+            m = re.search(r"Player\s+(\d+)\s+captured", hist)
             if m:
                 target = int(m.group(1))
                 break
